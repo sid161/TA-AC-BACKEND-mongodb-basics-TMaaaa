@@ -18,6 +18,7 @@ host, username and password are optional fields.
 - --jsonArray: Passed an array of json objects
 
 ## BLOCK-writeCode
+mongoimport --siddharth --test2 -- generate.JSON()
 
 Go to `https://www.json-generator.com/`
 
@@ -46,6 +47,7 @@ Go to `https://www.json-generator.com/`
 #### Export data from mongodb server to local system in json format using
 
 `mongoexport`command.
+
 
 ```
 mongoexport --db state --collection cities --out ~/Desktop/states/city.json --jsonArray
