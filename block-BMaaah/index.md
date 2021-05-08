@@ -38,13 +38,18 @@ db.articles.find({_id:2})
 6. 1. Find documents using title
 db.articles.find({title:"Javascript"})
 7. 2. Find documents using author's name field.
-db.articles.find({author: {name: "siddharth"}})
+db.articles.findOne({"author.name": "siddharth"}})
 8. Find document using a specific tag.
+db.articles.findOne({tags})
 
 9. Update title of a document using its \_id field.
+db.articles.update({_id:2},{$set: {title: "Intro to react and redux}})
 10. Update a author's name using article's title.
+db.articles.update({title: "Javascript"}, {$set: {"author.name": "rudyard"}})
 11. rename details field to description from all articles in articles collection.
+db.articles.update({},{$rename: {details: "description"}})
 12. Add additional tag in a specific document.
+db.articles.update({title: "HTML"}, {$push: {tags: "Express"}})
 
 13. Update an article's title using $set and without $set.
 without $set replaces all documents with one field which we have mentioned
@@ -52,6 +57,7 @@ without $set replaces all documents with one field which we have mentioned
 - Write the differences here ?
 
 13. find an article using title and increment it's auhtor's age by 5.
+db.articles.update({title: "CSS"}, {$inc: {author.age: 5}});
 
 14. Delete a document using \_id field with `db.COLLECTION_NAME.remove()`.
 
@@ -172,6 +178,10 @@ db.users.insertMany([
 Insert above data into database to perform below queries:-
 
 - Find all males who play cricket.
+db.users.find({gender: "Male", sports: "cricket"})
 - Update user with extra golf field in sports array whose name is "Steve Ortega".
+db.users.update({name: "Steve Ortega}, {$push: {sports: "golf"}})
 - Find all users who play either 'football' or 'cricket'.
+db.users.find({sports: {$in: ["football","cricket"]}})
 - Find all users whose name includes 'ri' in their name.
+db.users.find({name: /ri/})
